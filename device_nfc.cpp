@@ -36,6 +36,11 @@ DeviceNFC::DeviceNFC() {
     }
 
     int err = nfc_initiator_init(pnd);
+
+
+    const uint8_t debugCmd[] = {0x08, 0x63, 0x28, 0xdc};
+    execute_command(debugCmd, sizeof(debugCmd), "debug");
+
     if (err < 0) {
         nfc_close(pnd);
         nfc_exit(context);
